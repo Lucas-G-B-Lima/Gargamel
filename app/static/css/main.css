@@ -1,0 +1,430 @@
+ :root {
+    --primary-width: 610px;
+    --primary-height: 377px;
+    --transition-speed: 0.4s;
+    --bounce-bezier: cubic-bezier(0.175, 1.5, 0.32, 2);
+    --color-primary: #101010 ;
+    --color-secondary: #303030;
+    --color-terceary: #666666;
+    --color-text: #c8c8c8;
+    --color-google: #4285F4;
+    --color-facebook: #1877F2;
+    --color-telegram: #0088cc;
+    --color-instagram: #d6249f;
+    --color-x-twitter: #000000;
+    --color-youtube: #FF0000;
+    --color-pinterest: #E60023;
+    --color-whatsapp: #25D366;
+    --instagram-gradient: radial-gradient(circle at 30% 107%,#fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+
+body {
+    margin: 0;
+    background-image: url('../Midia/Garga_fundo_02.png'), linear-gradient(135deg, rgba(155, 155, 155, 0.5), rgba(201, 201, 201, 0.5), rgba(255, 255, 255, 0.5));
+    background-repeat: repeat;
+    background-size: 280px 280px, cover; 
+    background-blend-mode: multiply; /* Faz uma mistura de cores legal quando 2 fotos se sobrepoem */
+    font-family: 'Alexandria', sans-serif;
+    background-color: #f2f2f2;
+}
+
+header {
+    position: fixed; /* Fixa o menu no topo da tela */
+    top: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 15px;
+    z-index: 10;
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-terceary));
+    opacity: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+header img{
+    width: 200px;
+    opacity: 0.78;
+}
+
+header ul{
+    display: flex;
+    list-style: none;
+    gap: 5px;
+    padding: 10px;
+    margin: 0px;
+}
+
+header a{
+    text-decoration: none;
+    color: var(--color-text);
+    font-family: 'Alexandria', sans-serif;
+    font-size: 0.8em;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    background-color: var(--color-primary);
+    transition: all var(--transition-speed)
+}
+
+.controle{
+    width: 200px;
+}
+
+header a:hover {
+    background-color: var(--color-secondary);
+    color: white;
+    border-color: var(--color-terceary );
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* ================= SUBMENU ================= */
+.main-nav .submenu {
+    visibility: hidden; 
+    opacity: 0;
+    position: absolute; /* Posiciona o sub-menu fora do fluxo normal, em relação ao item pai */
+    top: 30px; /* Coloca o sub-menu abaixo do item pai */
+    left: 0; /* Alinha o sub-menu com a borda esquerda do item pai */
+    min-width: 150px;
+    background-color: var(--color-secondary);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    z-index: 25;
+    list-style: none; /* Remove marcadores de lista */
+    margin: 0; /* Remove margem padrão */
+    transition: all var(--transition-speed); 
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 1s ease-in-out, opacity var(--transition-speed) ease-out;
+}
+
+.main-nav ul li {
+    position: relative;
+}
+
+.main-nav .submenu li a {
+    color: var(--color-text);
+    display: block; /* Faz o link ocupar toda a largura do li */
+    text-decoration: none;
+    font-size: 0.9em; /* Ajuste o tamanho da fonte se necessário */
+    background-color: transparent; /* Remove o background que você tinha no header a */
+    border: none; /* Remove a borda do header a */
+    border-radius: 3px;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Efeito hover nos links do sub-menu */
+.main-nav .submenu li a:hover {
+    background-color: var(--color-terceary); /* Fundo sutil ao passar o mouse */
+    color: white;
+}
+
+/* Mostra o sub-menu ao passar o mouse sobre o item pai */
+.main-nav ul li:hover > .submenu,
+.main-nav ul li:focus-within > .submenu { /* focus-within para acessibilidade de teclado */
+    visibility: visible; 
+    opacity: 1;
+    max-height: 500px; /* Um valor alto o suficiente para conter todo o conteúdo do sub-menu */
+}
+
+.main-nav ul li:hover > a,
+.main-nav ul li:focus-within > a {
+    background-color: var(--color-secondary);
+}
+
+/*  ================= MENU USER =================  */
+.menu-user {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 35%;
+    z-index: 20;
+    margin: 0px 20px 0px auto;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+
+.menu-user .bar {
+    width: 20px;
+    height: 4px;
+    background-color: white;
+    border-radius: 4px;
+    transition: all var(--transition-speed);
+}
+
+/* Estados para transformar em X (valores ajustados) */
+.menu-user.active .bar-1 {transform: translateY(7px) rotate(45deg);}
+.menu-user.active .bar-2 {opacity: 0;}
+.menu-user.active .bar-3 {transform: translateY(-7px) rotate(-45deg);}
+
+.sidebar-menu {
+    position: fixed;
+    top: 63px;
+    width: 250px; /* Largura do menu lateral */
+    right: -300px; /* Inicia fora da tela (300px é a largura do menu) */
+    background-color: var(--color-terceary); /* Cor de fundo do menu */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right var(--transition-speed); /* Transição para o slide */
+    z-index: 15; /* Abaixo do ícone, mas acima do conteúdo */
+    display: flex; /* Adicionado para organizar os itens verticalmente */
+    flex-direction: column; /* Coloca os itens em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.sidebar-menu.active {
+    right: 2px;
+}
+
+.sidebar-menu nav ul {
+    flex-direction: column;
+    padding: 10px;
+    list-style: none;
+    gap: 5px;
+}
+
+.sidebar-menu nav ul li a {
+    display: block;
+    padding: 10px;
+    color: white;
+    font-size: 0.7em;
+    text-decoration: none;
+    transition: background-color var(--transition-speed);
+}
+
+.sidebar-menu nav ul li a:hover {
+    background-color: var(--color-secondary);
+}
+
+.sidebar-menu .user-info {
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sidebar-menu .user-info img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-primary);
+}
+
+.sidebar-menu .user-info .user-name {
+    text-decoration: underline;
+    color: white;
+    font-size: 1.2em;
+    margin-top:10px;
+    margin-bottom: 15px;
+}
+
+.sidebar-menu .user-rank, .sidebar-menu .user-academy {
+    color: var(--color-text);
+    font-size: 0.9em;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.sidebar-menu nav {
+    width: 92%;
+}
+
+/* ======== CONTEUDO ======== */
+main { 
+    display: flex;
+    padding-top: 62px;
+    align-items: center;
+    box-sizing: border-box;
+    align-items: flex-start; /* Alinha os itens no topo */
+    margin: 5px 0;
+}
+
+/*  ====== CENTRO ======  */
+.conteudo_center {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    width: 50%;
+    background-color: white;
+}
+.titulo {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+.conteudo_item{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 300px;
+} 
+
+/*  ====== LATERAL ======  */
+.lateral {
+    width: 20%;
+    text-align: center;
+    margin: 0 auto;
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.lateral p{
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-size: 0.9em;
+    background-color: white;
+    border-radius: 5px;
+    padding: 2px;
+}
+.lateral h2{
+    width: 90%;
+    font-size: 0.9em;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-weight: normal;
+    border: 1px solid var(--color-terceary);
+}
+.noticia, .parceiro {
+    border: 1px solid var(--color-terceary);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px;
+    margin: 0 auto 0 auto;
+    aspect-ratio: 1 / 1; 
+    border-radius: 5px;
+    box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    /**/
+
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* Garante que nada "vaze" para fora da div */
+    text-decoration: none; /* Remove sublinhado padrão do link */
+    color: var(--color-primary); /* Cor do texto padrão da notícia */
+    transition: all 0.3s ease-out; /* Transição para o hover */
+}
+
+.noticia img, .parceiro img {
+    width: 100%; /* Faz a imagem ocupar 100% da largura da div pai */
+    height: 80%; /* Exemplo: Dedica 70% da altura da div para a imagem */
+    object-fit: cover; /* **O que você pediu**: Corta a imagem para preencher o espaço sem distorcer */
+    display: block; /* Remove o espaço extra abaixo da imagem (se houver) */
+    /* Novas propriedades para a imagem */
+    border-radius: 5px; /* Bordas arredondadas para a imagem */
+    border: 1px solid var(--color-primary); /* Borda da cor primária */
+    box-sizing: border-box; /* Garante que a borda seja incluída na altura/largura */
+    transition: all 0.3s ease-out; /* Transição para o hover */
+}
+
+.noticia img{
+    filter: blur(2px) brightness(0.6); /* Aplica o blur e escurece a imagem inicialmente */
+    /*transition: filter 0.3s ease-in-out; /* Adiciona uma transição suave para a propriedade 'filter' */
+}
+
+/* Estilos para o parágrafo do título da notícia */
+.noticia p, .parceiro p {
+    height: 18%;
+    margin-top: 2px; /* Espaço entre a imagem e o texto */
+    margin-bottom: 2px; /* Espaço entre a imagem e o texto */
+    font-size: 0.7em; /* Ajuste o tamanho da fonte se necessário */
+    /* Estilo "no estilo da página" */
+    color: var(--color-primary); /* Usando a cor primária para o texto */
+    font-weight: bold; /* Títulos de notícia costumam ser mais fortes */
+    display: flex; /* Para centralizar o texto verticalmente, se necessário */
+    align-items: center; /* Centraliza verticalmente o texto */
+    justify-content: center; /* Centraliza horizontalmente o texto */
+    background-color: #00000044;
+    transition: all 0.3s ease-out; /* Transição para o hover */
+}
+.noticia a, .parceiro a{ text-decoration: none; }
+
+/* Efeito de hover na caixa da notícia */
+.noticia:hover, .parceiro:hover {
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5); /* Sutil elevação e sombra mais forte */
+    padding: 0px;
+    border: 2px solid var(--color-terceary);
+}
+.noticia:hover img, .parceiro:hover img{
+    border: none;
+    border-radius: 0px;
+    filter: blur(0) brightness(1); /* Remove o blur e restaura o brilho normal */
+}
+.noticia:hover p, .parceiro:hover p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+
+/*  ====== RODAPE ======  */
+footer {
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, var(--color-primary), #333333EE);
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between; /* Centraliza o footer-content */
+    gap: 2px;
+}
+footer p {
+    color: var(--color-text);
+    font-size: 0.8em;
+    margin: 3px 0px;
+    text-align: center;
+}
+
+.footer-nav,
+.footer-social,
+.footer-info {
+    height: 100%;
+    flex: 1; /* Faz com que cada coluna ocupe uma parte igual do espaço disponível */
+    border: 1px dashed black;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer-nav ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    list-style: none;
+    justify-items: center; 
+    align-items: center; 
+    margin: 0px;
+    padding: 2px;
+}
+.footer-nav li {
+    padding: 2px 0;
+}
+.footer-nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.7em;
+    transition: color 0.3s ease;
+    display: block; /* Garante que o link ocupe todo o espaço do li para o padding/clique */
+}
+.footer-nav a:hover {
+    color: white;
+}
+
+.footer-social .social-icons {
+    display: flex;
+    gap: 15px; /* Espaço entre os itens do grid */
+    justify-items: center; /* Centraliza horizontalmente cada item dentro de sua célula */
+    align-items: center; /* Centraliza verticalmente cada item dentro de sua célula */
+}
+.footer-social .social-icons img {
+    width: 30px;
+    height: 30px;
+    transition: opacity 0.3s ease;
+}

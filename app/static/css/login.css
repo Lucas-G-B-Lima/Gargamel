@@ -1,0 +1,593 @@
+:root {
+    --primary-width: 610px;
+    --primary-height: 377px;
+    --transition-speed: 0.4s;
+    --bounce-bezier: cubic-bezier(0.175, 1.5, 0.32, 2);
+    --color-primary: #333333 ;
+    --color-secondary: #3d566d;
+    --color-google: #4285F4;
+    --color-facebook: #1877F2;
+    --color-telegram: #0088cc;
+    --color-instagram: #d6249f;
+    --color-x-twitter: #000000;
+    --color-youtube: #FF0000;
+    --color-pinterest: #E60023;
+    --color-whatsapp: #25D366;
+    --instagram-gradient: radial-gradient(circle at 30% 107%,#fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+
+body {  
+    margin: 0;
+    background-image: url('../Midia/Garga_fundo_01.png'), linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(119, 119, 119, 0.5), rgba(255, 255, 255, 0.5));
+    background-repeat: repeat;
+    background-size: 280px 280px, cover; 
+    background-blend-mode: multiply; /* Faz uma mistura de cores legal quando 2 fotos se sobrepoem */
+    font-family: 'Alexandria', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 0.75em;
+}
+
+.container {
+    width: var(--primary-width);
+    height: var(--primary-height);
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.welcome-face, .back-face {
+    position: absolute;
+    width: var(--primary-width);
+    height: var(--primary-height);
+    backface-visibility: hidden;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #F9F9F9, #F7F7F7, #F0F0F0);;
+    box-shadow: 0 12px 23px rgba(0, 0, 0, 0.75);
+    display: flex;
+    transition: transform var(--transition-speed) ease;
+    overflow: hidden;
+    padding: 0;
+    align-items: stretch; /*se por acaso eu trocar por um video com um pixel a menos isso vai ajudar a corrigir*/
+}
+
+.back-face {
+    transform: rotateY(180deg);
+}
+
+.front-form, .back-form {
+    width: var(--primary-height);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+/*config para a borda tracejada*/
+.ao_lado {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.geral_form {
+    display: flex; /* Torna o formulário um contêiner flexbox */
+    flex-direction: column; /* Organiza os elementos internos do form em coluna */
+    height: 100%; /* Faz o formulário tentar preencher 100% da altura disponível de seu pai (.ao_lado) */
+}
+
+.form_register {
+    overflow-y: scroll;
+}
+.form_register  p{
+    text-decoration: underline;
+}
+.form_register ::-webkit-scrollbar-thumb {
+    background-color: var(--color-secondary);
+    border-radius: 4px;
+}
+.form_register ::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.form_register  .btn-group {
+    margin-top: 15px;
+}
+#btn_register{
+    margin-top: 10px;
+}
+
+.ao_lado::before, .a_baixo::before {
+    content: '';
+    position: absolute;
+    margin: 10px;
+    border: 2px dashed #C0C0C0; 
+    border-radius: 10px;
+    pointer-events: none;
+    inset: 0; /*define que o começo da borda é o 0 do elemento pai*/
+}
+
+.back-image, .front-video, .back-video {
+    height: 100%;   
+    object-fit: cover;
+    object-position: center;
+    flex-shrink: 0;
+    flex-grow: 1; /* Faz com que a mídia ocupe o espaço restante pois um pixel chato estava me incomodando*/
+}
+
+h1, p {
+    color: var(--color-primary);
+    text-align: center;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+h2{
+    color: var(--color-primary);
+    line-height: 1.2;
+    text-align: center;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-size: 1.2em;
+}
+
+/*AJUSTES ESPECIFICOS*/
+
+/* Inputs (labels e box de input) */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 15px;
+}
+
+.input-group label {
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.input-group input, .input-group select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Switch (por hora apenas a label e o botão check)*/
+.switch-group {
+    margin-top: 15px;
+}
+
+/*Botões de opções welcome*/
+.options{
+    margin: auto 0px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 0; /* Não cresce no .options */
+    flex-shrink: 0; /* Não encolhe no .options */
+    flex-basis: auto;
+}
+
+.options .btn {
+    width: 233px;
+}
+
+/* Geral botoes */
+.btn-group {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    margin-top: auto; /* Gruda no final */
+    width: 100%;
+    gap: 10px;
+}
+
+.btn-group .btn {
+    width: 144px;
+    height: 34px;
+}
+
+.btn {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--color-primary);
+    color: white;
+    cursor: pointer;
+    transition: all var(--transition-speed) var(--bounce-bezier);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: translateY(0); /* Ponto de partida explícito */
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.back-btn::before {
+    content: "←";
+    color: white;
+}
+
+.btn:hover {
+    background: var(--color-secondary);
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Icones */
+.icones {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.icones p {
+    font-size: 10px;
+    margin: 0;
+    color: var(--color-primary); 
+}
+
+.icones ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.icones li{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    border: solid 1px var(--color-primary);
+    border-radius: 25%; /* Isso dará um formato mais circular, mas não um círculo perfeito */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all var(--transition-speed) var(--bounce-bezier);
+    overflow: visible;
+}
+
+.icones li img {
+    width: 25px;
+    height: 25px;
+    transition: all var(--transition-speed) ease;
+}
+
+.icones li:hover {transform: scale(0.95);box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);}
+.icones li:hover img {filter: invert(100%) brightness(100%);}
+.icones .icon-youtube:hover {background-color: var(--color-youtube);border-color: var(--color-youtube);}
+.icones .icon-x-twitter:hover {background-color: var(--color-x-twitter);border-color: var(--color-x-twitter);}
+.icones .icon-facebook:hover {background-color: var(--color-facebook);border-color: var(--color-facebook);}
+.icones .icon-whatsapp:hover {background-color: var(--color-whatsapp);border-color: var(--color-whatsapp);}
+.icones .icon-instagram:hover {background: var(--color-instagram);background: var(--instagram-gradient);border-color: var(--color-instagram);}
+
+/* Animação extra em redes sociais */
+/* O PRÓPRIO TOOLTIP (PSEUDO-ELEMENTO) */
+.icones li::after {
+    content: attr(title); /* Pega o texto do atributo 'title' do LI */
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%) translateY(10px); /* Ajusta para centralizar e dar um "push-up" */
+    white-space: nowrap; /* Impede que o texto quebre linha */
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 0.75em; /* Tamanho da fonte do tooltip */
+    color: white; /* Cor do texto do tooltip */
+    text-align: center;
+    opacity: 0; /* Escondido por padrão */
+    visibility: hidden; /* Garante que não interfira com eventos do mouse */
+    pointer-events: none; /* Impede que o tooltip bloqueie eventos do mouse */
+    transition: all var(--transition-speed) var(--bounce-bezier);
+    z-index: 10; /* Garante que o tooltip fique acima de outros elementos */
+}
+
+/* APARECER O TOOLTIP NO HOVER */
+.icones li:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0%);
+}
+
+/* MUDAR A COR DO BALÃO (TOOLTIP) */
+.icones .icon-youtube:hover::after {background-color: var(--color-youtube);border-color: var(--color-youtube);}
+.icones .icon-instagram:hover::after {background: var(--color-instagram);border-color: var(--color-instagram);}
+.icones .icon-x-twitter:hover::after {background-color: var(--color-x-twitter);border-color: var(--color-x-twitter);}
+.icones .icon-facebook:hover::after {background-color: var(--color-facebook);border-color: var(--color-facebook);}
+.icones .icon-whatsapp:hover::after {background-color: var(--color-whatsapp);border-color: var(--color-whatsapp);}
+
+/* Botoes logar rede social */
+.social-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 0;
+    margin: 0px;
+}
+
+.social-list li {
+    text-align: center;
+}
+
+.social_btn {
+    width: 90%;
+    padding: 12px;
+    font-family: 'Alexandria', sans-serif;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    margin: auto;
+}
+
+/* ESTILOS PARA O ESTADO 'HOVER' */
+.social_btn:hover {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5); 
+}
+
+.social_btn.google:hover {border-color: var(--color-google);color: var(--color-google);}
+.social_btn.facebook:hover {border-color: var(--color-facebook);color: var(--color-facebook);}
+.social_btn.x-twitter:hover {border-color: var(--color-x-twitter);color: var(--color-x-twitter);}
+.social_btn.telegram:hover {border-color: var(--color-telegram);color: var(--color-telegram);}
+.social_btn.pinterest:hover {border-color: var(--color-pinterest);color: var(--color-pinterest);}
+.social_btn.instagram:hover {background: linear-gradient(white, white) padding-box, var(--instagram-gradient) border-box;border-color: transparent;color: var(--color-instagram);}
+
+/* ESTILOS PARA O ESTADO 'SELECIONADO' (Classe Adicionada por JavaScript) */
+.social_btn.selected {
+    color: white;
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+}
+.social_btn.selected:hover {
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.social_btn.google.selected {background-color: var(--color-google);}
+.social_btn.facebook.selected {background-color: var(--color-facebook);}
+.social_btn.instagram.selected {background: var(--instagram-gradient);}
+.social_btn.x-twitter.selected {background-color: var(--color-x-twitter);}
+.social_btn.telegram.selected {background-color: var(--color-telegram);}
+.social_btn.pinterest.selected {background-color: var(--color-pinterest);}
+
+.label_social {
+    display: block;
+    text-align: center;
+    margin: auto;
+    font-size: 1 em;
+    color: var(--color-primary);
+    min-height: 1.2em; /* Garante que ela ocupe um espaço mesmo vazia (opcional) */
+    opacity: 0; /* Começa invisível */
+    transition: opacity 0.3s ease-in-out; /* Transição para aparecer/desaparecer */
+}
+
+/* Estilo para quando a label tiver conteúdo e for visível */
+.label_social.visible {
+    opacity: 1; /* Torna visível */
+}
+
+.front-video-mobile{
+        display: none;
+}
+
+/* Estilos para a caixa de mensagem flutuante */
+/* ============ BOX DE ERRO ============ */
+.message-box {
+    position: fixed;
+    box-sizing: border-box;
+    display: none;
+    top: -40px;
+    left: 50%;
+    width: 80%;
+    height: 80px;
+    padding: 20px;
+    transform: translateX(-50%);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(119, 119, 119, 0.9), rgba(200, 200, 200, 0.9), rgba(119, 119, 119, 0.9));
+    overflow: visible;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin: 0;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translate(-50%, -20px);
+    z-index: 100;
+    white-space: pre-line;
+    display: flex;
+    justify-content: center;  /* centraliza horizontalmente */
+    align-items: center;      /* centraliza verticalmente */
+}
+
+.message-box.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+#message-text {
+    line-height: 1.2;
+    font-size: 1.2em;
+}
+
+.message-box::before {
+    content: "OSS!";
+    position: absolute;
+    top: -10px;
+    right: 10%;
+    background: white;
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 0.8em;
+    padding: 1px 8px;
+    letter-spacing: 1px;
+    border: 2px solid var(--color-primary);
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.message-box::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: 9%;
+    width: 11.6%;
+    height: 2px;
+    background: white;
+    z-index: 5;
+}
+
+/* Variantes para tipos de mensagem */
+.message-box.success {
+    background: linear-gradient(135deg, rgba(50, 150, 50, 0.9), rgba(100, 200, 100, 0.9), rgba(50, 150, 50, 0.9));
+}
+
+.message-box.success::before {
+    color: #329632;
+}
+
+.message-box.error {
+    background: linear-gradient(135deg, rgba(150, 50, 50, 0.9), rgba(200, 100, 100, 0.9), rgba(150, 50, 50, 0.9));
+}
+
+.message-box.error::before {
+    color: #963232;
+}
+
+.message-box.warning {
+    background: linear-gradient(135deg, rgba(119, 119, 119, 0.9), rgba(200, 200, 200, 0.9), rgba(119, 119, 119, 0.9));
+}
+
+.message-box.warning::before {
+    color: var(--color-primary);
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 20;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: white;
+    color: white;
+}
+
+ /* ============ OUTROS ============ */
+.required::after {
+    content: " *";
+    color: #d9534f;
+}
+
+
+/* --- Media Query para Telas Menores --- */
+@media (max-width: 768px) {
+    /* Inverte as proporções das variáveis CSS */
+    :root {
+        --primary-width: 377px;
+        --primary-height: 610px;
+    }
+
+    .back-video, .front-video, .back-image{
+        display: none;
+    }
+
+    .front-video-mobile{
+            display: block;
+            width: 80%;
+            margin-top: 12.5px;
+            opacity: 0.85;
+    }
+
+    .ao_lado{
+        align-items: center;
+    }
+
+    .geral_form{
+        width: 100%;
+    }
+
+    .input-group label {
+        font-size: 0.9em;
+    }
+    .input-group input, .input-group select {
+        font-size: 1em;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .btn-group .btn {
+        width: 233px;
+    }
+    
+    .message-box {
+        width: 90%;
+        padding: 12px 30px 12px 15px;
+        height: auto;
+        min-height: 70px;
+        top: 18px;
+    }
+    .close-btn {
+        top: 5px;
+        right: 5px;
+        width: 20px;
+        height: 20px;
+        font-size: 1em;
+    }
+    .message-box::before {
+        left: 15px;
+        font-size: 0.7em;
+        top: -10px;
+        width: 8%;
+    }
+
+    .message-box::after {
+    content: "";
+    top: 0px;
+    right: 0px;
+    width: 0px;
+    height: 0px;
+    }
+    
+    .social-list {
+        grid-template-columns: 1fr;
+    }
+}

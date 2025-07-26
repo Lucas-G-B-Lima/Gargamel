@@ -5,7 +5,7 @@ from datetime import datetime, date
 class UserLogin(db.Model):
     __tablename__ = 'user_login'
     id = db.Column(db.Integer, primary_key=True)
-    data_criacao = db.Column(db.DateTime, default=datetime.now())
+    data_criacao = db.Column(db.DateTime, default=datetime.now)
     login = db.Column(db.String(80), unique=True, nullable=False, index=True)
     senha_hash = db.Column(db.String(128), nullable=False)
 
@@ -109,7 +109,7 @@ class UserBJJ(db.Model): # Renomeado para seguir convenção PEP 8 (CamelCase)
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user_login.id'), unique=True, nullable=False)
     # Usar datetime.utcnow para timestamps consistentes
-    data_atualizacao = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    data_atualizacao = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
     academia = db.Column(db.String(200))
     faixa = db.Column(db.String(50))
     graus = db.Column(db.Integer)

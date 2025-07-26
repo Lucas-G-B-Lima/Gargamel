@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv('.env')
+# Forcing rebuild
 
 app = Flask(__name__, static_folder='static') 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or os.getenv('DATABASE_URI')

@@ -5,10 +5,16 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv('.env')
-# Forcing rebuild
 
-app = Flask(__name__, static_folder='static') 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or os.getenv('DATABASE_URI')
+app = Flask(__name__, static_folder='static')
+
+database_url = os.environ.get('DATABASE_URL') or os.getenv('DATABASE_URI')
+
+# Força o SQLAlchemy a usar o driver psycopg2 explicitamente para PostgreSQL
+if database_url and database_url.startswith('postgres://'):
+    database_url = database_url.replace('postgres://', 'postgresql+psycopg2://', 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 #app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)

@@ -13,25 +13,25 @@ def get_todas_as_noticias():
         {
             'id': 1,
             'titulo': "NOTICIA TESTE: Gargamel é campeão no Mundial de BJJ!",
-            'imagem': '../static/Midia/Noticias_img/Img_teste_noticia.jpg', # Caminho da imagem (você precisará criar essa imagem)
+            'imagem': 'Midia/Noticias_img/Img_teste_noticia.jpg',
             'link': '/noticia/1' # Link para a página detalhada da notícia
         },
         {
             'id': 2,
             'titulo': "Lima finaliza faixa preta em seminário de jiu-jitsu!",
-            'imagem': '../static/Midia/Noticias_img/Img_teste_noticia.jpg',
+            'imagem': 'Midia/Noticias_img/Img_teste_noticia.jpg',
             'link': '/noticia/2'
         },
         {
             'id': 3,
             'titulo': "Nova filial da Garga-BJJ é inaugurada nos EUA!",
-            'imagem': '../static/Midia/Noticias_img/Img_teste_noticia.jpg',
+            'imagem': 'Midia/Noticias_img/Img_teste_noticia.jpg',
             'link': '/noticia/3'
         },
         {
             'id': 4,
             'titulo': "Conheça os benefícios do jiu-jitsu para a saúde mental.",
-            'imagem': '../static/Midia/Noticias_img/Img_teste_noticia.jpg',
+            'imagem': 'Midia/Noticias_img/Img_teste_noticia.jpg',
             'link': '/noticia/4'
         }
     ]

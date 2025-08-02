@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Garga BJJ</title>
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" >
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 </head>
 
 <body>
@@ -17,7 +16,7 @@
         <!-- Card Welcome inicial -->
         <section class="welcome-face" aria-label="Seleção de método de login">
             <video autoplay loop muted playsinline class="front-video" aria-hidden="true">
-                <source src="../static/Midia/Garga_Video_Welcome.mp4" type="video/mp4">
+                <source src="{{ url_for('static', filename='Midia/Garga_Video_Welcome.mp4') }}" type="video/mp4">
             </video>
             <div class="ao_lado front-form">
                 <h1>SEJA BEM-VINDO!</h1>
@@ -28,37 +27,42 @@
                     <button type="button" class="btn" id="guest" aria-haspopup="true">Modo convidado</button>
                 </div>
                 <div class="icones">
-                    <p>Siga-nos nas redes sociais</p>
-                    <ul>
-                        <li class="icon-youtube" title="YouTube">
-                            <a href="https://gargamelbjj.blogspot.com/" target="_blank" class="social-link">
-                                <img src="../static/Midia/Icons/youtube.svg" alt="Ícone YouTube">
-                            </a>
-                        </li>
-                        <li class="icon-instagram" title="Instagram">
-                            <a href="https://instagram.com/garga_bjj" target="_blank" class="social-link">
-                                <img src="../static/Midia/Icons/instagram.svg" alt="Ícone Instagram">
-                            </a>
-                        </li>
-                        <li class="icon-x-twitter" title="X (Twitter)">
-                            <a href="https://x.com/GargamelBJJ" target="_blank" class="social-link" data-network="X (Twitter)">
-                                <img src="../static/Midia/Icons/x-twitter.svg" alt="Ícone X (Twitter)">
-                            </a>
-                        </li>
-                        <li class="icon-facebook" title="Facebook">
-                            <a href="https://www.facebook.com/GARGAMELCARVALHO/" target="_blank" class="social-link" data-network="Facebook">
-                                <img src="../static/Midia/Icons/facebook.svg" alt="Ícone Facebook">
-                            </a>
-                        </li>
-                        <li class="icon-whatsapp" target="_blank" title="WhatsApp">
-                            <a href="#" target="_blank" class="social-link disabled">
-                                <img src="../static/Midia/Icons/whatsapp.svg" alt="Ícone WhatsApp">
-                            </a>
-                        </li>
-                    </ul>
+                <p>Siga-nos em nossas redes sociais</p>
+                <ul>
+                    <li class="icon-youtube" title="YouTube">
+                        <a href="https://www.youtube.com/user/Gargameljiujitsu" target="_blank" class="social-link">
+                            <img src="{{ url_for('static', filename='Midia/Icons/youtube.svg') }}" alt="Ícone YouTube">
+                        </a>
+                    </li>
+                    <li class="icon-facebook" title="Facebook">
+                        <a href="#" target="_blank" class="social-link">
+                            <img src="{{ url_for('static', filename='Midia/Icons/facebook.svg') }}" alt="Ícone Facebook">
+                        </a>
+                    </li>
+                    <li class="icon-instagram" title="Instagram">
+                        <a href="#" target="_blank" class="social-link">
+                            <img src="{{ url_for('static', filename='Midia/Icons/instagram.svg') }}" alt="Ícone Instagram">
+                        </a>
+                    </li>
+                    <li class="icon-x-twitter" title="Twitter">
+                        <a href="#" target="_blank" class="social-link">
+                            <img src="{{ url_for('static', filename='Midia/Icons/x-twitter.svg') }}" alt="Ícone Twitter">
+                        </a>
+                    </li>
+                    <li class="icon-whatsapp" title="Whatsapp">
+                        <a href="#" target="_blank" class="social-link">
+                            <img src="{{ url_for('static', filename='Midia/Icons/whatsapp.svg') }}" alt="Ícone Whatsapp">
+                        </a>
+                    </li>
+                    <li class="icon-blogger" title="Blog">
+                        <a href="https://gargamelbjj.blogspot.com/" target="_blank" class="social-link">
+                            <img src="{{ url_for('static', filename='Midia/Icons/blogger.svg') }}" alt="Ícone Blog">
+                        </a>
+                    </li>
+                </ul>
                 </div>
                 <video autoplay loop muted playsinline class="front-video-mobile" aria-hidden="true">
-                    <source src="../static/Midia/Garga_logo_cts_arred.mp4" type="video/mp4">
+                    <source src="{{ url_for('static', filename='Midia/Garga_logo_cts_arred.mp4') }}" type="video/mp4">
                 </video>
             </div>
         </section>
@@ -76,32 +80,32 @@
 
                 <h2>Efetuar Login</h2>
                 <form action="/processar_login" class="geral_form" id="form_login" method="POST">
+                {{ form_l.csrf_token(id="csrf_token_login") }}
                 <div class="input-group">
-                    <label for="username">Usuario:</label>
-                    <input type="text" id="username" name="username" placeholder="Insira seu nome de usuario" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" placeholder="Insira sua senha" required>
+                    {{ form_l.username.label }}
+                    {{ form_l.username(class="input-field", placeholder="Insira seu nome de usuário") }}
                 </div>
 
+                <div class="input-group">
+                    {{ form_l.password.label }}
+                    {{ form_l.password(class="input-field", placeholder="Insira sua senha") }}
+                </div>
                 <div class="switch-group">
-                <label class="switch-label">
-                    <input type="checkbox" class="switch" name="anonima" id="switch_anonimo">
-                    <span class="texto-switch" title="Seus comentários, publicações e reações serão anônimos, mesmo estando logado.">Modo anonimo?</span>
-                </label>
+                    <label class="switch-label">
+                        {{ form_l.anonimo(class="switch", title="Seus comentários, publicações e reações serão anônimos, mesmo estando logado." ) }}
+                        <span class="texto-switch">Modo anonimo?</span>
+                    </label>
                 </div>
 
                 <div class="btn-group">
                     <button type="submit" class="btn" id="btn_login_senha" name="login_type" value="senha">OSS!</button>
                     <button type="button" class="btn" id="btn_cadastrar">Cadastrar</button>  
                     <button type="button" class="btn" id="btn_esqueceu_senha">Recuperar senha</button>  
-                    <button type="button" class="btn back-btn"></button>
+                    <button type="button" class="btn back-btn" aria-label="Voltar"></button>
                 </div>
                 </form>
             </div>
-            <img class="back-image" src="../static/Midia/PROFESSOR_GARGAMEL_1.jpg" alt="Gargamel_1">
+            <img class="back-image" src="{{ url_for('static', filename='Midia/PROFESSOR_GARGAMEL_1.jpg') }}" alt="Gargamel_1">
         </article>
 
         <!-- REDE SOCIAL -->
@@ -121,14 +125,14 @@
                     </ul>
                 </div>
                 
-                <label for="btn_login_social" id="rede_social_selecionada" class="label_social"></label>
+                <label for="" id="rede_social_selecionada" class="label_social"></label>
                 <div class="btn-group">
                 <button type="submit" class="btn" id="btn_login_social" name="login_type" value="social">OSS!</button>
-                <button type="button" class="btn back-btn"></button>
+                <button type="button" class="btn back-btn" aria-label="Voltar"></button>
                 </div>
                 </form>
             </div>
-            <img class="back-image" src="../static/Midia/PROFESSOR_GARGAMEL_2.jpg" alt="Gargamel_2">
+            <img class="back-image" src="{{ url_for('static', filename='Midia/PROFESSOR_GARGAMEL_2.jpg') }}" alt="Gargamel_2">
         </article>
         
         <!-- CONVIDADO -->
@@ -136,129 +140,120 @@
             <div class="ao_lado back-form">
 
                 <h2>Entrar como convidado</h2>
-                <form action="/processar_login" class="geral_form" id="form_guest" method="POST">
-                <div class="input-group">
-                    <label for="guest_name">Nome:</label>
-                    <input type="text" id="guest_name" name="guest_name" placeholder="Insira seu nome" required>
-                </div>
-        
-                <div class="input-group">
-                    <label for="guest_academy">Academia:</label>
-                    <input type="text" id="guest_academy" name="guest_academy" placeholder="Insira sua academia" required>
-                </div>
+                <form action="/processar_login_convidado" class="geral_form" id="form_guest" method="POST">
+                {{ form_g.csrf_token(id="csrf_token_convidado") }} 
+                    <div class="input-group">
+                        {{ form_g.guest_name.label(class="required") }}
+                        {{ form_g.guest_name(class="input-field", placeholder="Insira seu nome", required=true) }}
+                    </div>
+                
+                    <div class="input-group">
+                        {{ form_g.guest_academy.label(class="required") }}
+                        {{ form_g.guest_academy(class="input-field", placeholder="Insira sua academia", required=true) }}
+                    </div>
 
-                <div class="input-group">
-                    <label for="guest_belt_select">Selecione sua faixa:</label>
-                    <select id="guest_belt_select" name="guest_belt">
-                    <option value="Não graduado">Não graduado</option>
-                    <option value="Faixa Branca">Faixa Branca</option>
-                    <option value="Faixa Azul">Faixa Azul</option>
-                    <option value="Faixa Roxa">Faixa Roxa</option>
-                    <option value="Faixa Marrom">Faixa Marrom</option>
-                    <option value="Faixa Preta">Faixa Preta</option>
-                    <option value="Faixa Coral">Faixa Coral</option>
-                    <option value="Faixa Vermelha">Faixa Vermelha</option>
-                    <option value="Faixa Branca Grau V">Faixa Branca Grau V</option>
-                    </select>
-                </div>
+                    <div class="input-group">
+                        {{ form_g.guest_belt.label(class="required") }}
+                        {{ form_g.guest_belt(class="input-field", required=true) }}
+                    </div>
 
-                <div class="switch-group">
-                    <label class="switch-label">
-                    <input type="checkbox" class="switch" name="master">
-                    <span class="texto-switch">Categoria Master?</span>
-                    </label>
-                </div>
+                    <div class="switch-group">
+                        <label class="switch-label">
+                            {{ form_g.master(class="switch") }}
+                            <span class="texto-switch">Categoria Master?</span>
+                        </label>
+                    </div>
 
                 <div class="btn-group">
                     <button type="submit" class="btn" id="btn_login_convidado" name="login_type" value="convidado">OSS!</button>
-                    <button type="button" class="btn back-btn"></button>
+                    <button type="button" class="btn back-btn" aria-label="Voltar"></button>
                 </div>
                 </form>
             </div>
             <video autoplay loop muted playsinline class="back-video" aria-hidden="true">
-                <source src="../static/Midia/Garga_Video_Convidado.mp4" type="video/mp4">
+                <source src="{{ url_for('static', filename='Midia/Garga_Video_Convidado.mp4') }}" type="video/mp4">
             </video>
         </article>
 
         <!-- CADASTRO -->
         <article class="back-face" id="register-back">
             <video autoplay loop muted playsinline class="back-video" aria-hidden="true">
-                <source src="../static/Midia/Garga_Video_Cadastro.mp4" type="video/mp4">
+                <source src="{{ url_for('static', filename='Midia/Garga_Video_Cadastro.mp4') }}" type="video/mp4">
             </video>
             <div class="ao_lado back-form" id="register-form">
                 <h2>REGISTRO</h2>
                 <form class="geral_form form_register" id="form_register" method="POST" action="/processar_cadastro">
-                {{ form.csrf_token }} <!-- Campo oculto de segurança gerado pelo Flask-WTF -->
+                {{ form_c.csrf_token(id="csrf_token_cadastro") }} <!-- Campo oculto de segurança gerado pelo Flask-WTF -->
                 <div class="barra_de_scroll">
                     <p>Informaçoes de usuario</p>
                     <!-- Renderizando campos do Flask-WTF -->
                     <!-- Usuario -->
                     <div class="input-group">
-                        {{ form.register_username.label (class="required") }}
-                        {{ form.register_username(class="input-field", placeholder="Escolha um nome de usuário", required=true) }}
+                        {{ form_c.register_username.label (class="required") }}
+                        {{ form_c.register_username(class="input-field", placeholder="Escolha um nome de usuário", required=true) }}
                     </div>
                     <!-- Telefone -->
                     <div class="input-group">
-                    {{ form.register_telefone.label(class="required") }}
-                    {{ form.register_telefone(
-                        placeholder="(00) 00000-0000",
-                        required=true,
-                        title="Formato: (99) 99999-9999",
-                        inputmode="tel"
-                        ) }}
+                        {{ form_c.register_telefone.label(class="required") }}
+                        {{ form_c.register_telefone(
+                            placeholder="(00) 00000-0000",
+                            required=true,
+                            title="Formato: (99) 99999-9999",
+                            inputmode="tel") 
+                        }}
                     </div>
                     <!-- E-mail -->
                     <div class="input-group">
-                        {{ form.register_email.label(class="required")  }}
-                        {{ form.register_email(class="input-field", placeholder="Insira seu e-mail", required=true) }}
+                        {{ form_c.register_email.label(class="required")  }}
+                        {{ form_c.register_email(class="input-field", placeholder="Insira seu e-mail", required=true) }}
                     </div>
                     <!-- Senha -->
                     <div class="input-group">
-                        {{ form.register_password.label(class="required")  }}
-                        {{ form.register_password(class="input-field", placeholder="Crie uma senha", required=true) }}
+                        {{ form_c.register_password.label(class="required")  }}
+                        {{ form_c.register_password(class="input-field", placeholder="Crie uma senha", required=true) }}
                     </div>
                     <!-- Confirmar senha -->
                     <div class="input-group">
-                        {{ form.register_confirm_password.label(class="required")  }}
-                        {{ form.register_confirm_password(class="input-field", placeholder="Confirme sua senha", required=true) }}
+                        {{ form_c.register_confirm_password.label(class="required")  }}
+                        {{ form_c.register_confirm_password(class="input-field", placeholder="Confirme sua senha", required=true) }}
                     </div>
 
                     <p><br>Informações do atleta</p>
                     <!-- Nome -->
                     <div class="input-group">
-                        {{ form.register_name.label(class="required")  }}
-                        {{ form.register_name(class="input-field", placeholder="Insira seu nome ou apelido", required=true) }}
+                        {{ form_c.register_name.label(class="required")  }}
+                        {{ form_c.register_name(class="input-field", placeholder="Insira seu nome ou apelido", required=true) }}
                     </div>
                     <!-- Academia -->
                     <div class="input-group">
-                        {{ form.register_academy.label }}
-                        {{ form.register_academy(class="input-field", placeholder="Nome do seu dojo/tatame") }}
+                        {{ form_c.register_academy.label }}
+                        {{ form_c.register_academy(class="input-field", placeholder="Nome do seu dojo/tatame") }}
                     </div>
                     <!-- Faixa -->
                     <div class="input-group">
-                        {{ form.register_belt.label(class="required")  }}
-                        {{ form.register_belt(class="input-field", required=true) }}
+                        {{ form_c.register_belt.label(class="required")  }}
+                        {{ form_c.register_belt(class="input-field", required=true) }}
                     </div>
                     <!-- Grau -->
                     <div class="input-group">
-                        {{ form.register_grau.label(class="required")  }}
-                        {{ form.register_grau(class="input-field", required=true) }}
+                        {{ form_c.register_grau.label(class="required")  }}
+                        {{ form_c.register_grau(class="input-field", required=true) }}
                     </div>
                     <!-- Data Nascimento -->
                     <div class="input-group">
-                        {{ form.register_nascimento.label(class="required")  }}
-                        {{ form.register_nascimento(
+                        {{ form_c.register_nascimento.label(class="required")  }}
+                        {{ form_c.register_nascimento(
                             class="input-field",
                             placeholder="DD/MM/AAAA",
                             pattern="\d{2}/\d{2}/\d{4}",
                             title="Formato: DD/MM/AAAA",
-                            required=true
-                        ) }}
+                            required=true) 
+                        }}
                     </div>
                     <!-- Peso -->
                     <div class="input-group">
-                        {{ form.register_peso.label }}
-                        {{ form.register_peso(
+                        {{ form_c.register_peso.label }}
+                        {{ form_c.register_peso(
                             class="input-field",
                             placeholder="Ex: 72.5",
                             inputmode="decimal",
@@ -269,20 +264,21 @@
                     </div>
                     <!-- Data graduação -->
                     <div class="input-group">
-                        {{ form.register_data_graduacao.label }}
-                        {{ form.register_data_graduacao(
+                        {{ form_c.register_data_graduacao.label }}
+                        {{ form_c.register_data_graduacao(
                             class="input-field",
                             placeholder="DD/MM/AAAA",
                             pattern="\d{2}/\d{2}/\d{4}",
-                            title="Formato: DD/MM/AAAA"
-                        ) }}
+                            title="Formato: DD/MM/AAAA") 
+                        }}
                     </div>
                 </div>
                 </form>
                 <div class="btn-group" id="btn_register">
                     <button type="submit" form="form_register" class="btn" id="btn_submit_register">Cadastrar</button>
-                    <button type="button" class="btn back-btn-register">Voltar</button>
+                    <button type="button" class="btn back-btn-register" aria-label="Voltar">Voltar</button>
                 </div>
+            </div>
         </article>
 
         <!-- RECUPERAR SENHA -->
@@ -290,17 +286,14 @@
             <div class="ao_lado back-form">
                 <h2>Recuperar Senha</h2>
                 <form action="/processar_recuperacao_senha" class="geral_form" id="form_forgot_password" method="POST">
+                {{ form_p.csrf_token(id="csrf_token_senha") }} 
                     <div class="input-group">
-                        <label for="forgot_password_user">E-mail ou Usuário:</label>
-                        <input type="text" id="forgot_password_user" name="forgot_password_user" placeholder="Informe seu e-mail ou usuário" required>
+                        {{ form_p.forgot_password_user.label(class="required") }}
+                        {{ form_p.forgot_password_user(class="input-field", placeholder="Informe seu e-mail ou usuário", required=true) }}
                     </div>
                     <div class="input-group">
-                        <label for="forgot_metodo">Selecione um metodo de recuperação:</label>
-                        <select id="forgot_metodo" name="forgot_metodo">
-                        <option value="-">Selecione</option>
-                        <option value="email">E-mail</option>
-                        <option value="telefone">Telefone</option>
-                        </select>
+                        {{ form_p.forgot_metodo.label(class="required") }}
+                        {{ form_p.forgot_metodo(class="input-field", required=true) }}
                     </div>
                     <div class="input-group">
                         <p>Ou entre em contato pressionando o botão abaixo:</p>
@@ -308,11 +301,11 @@
                     </div>
                     <div class="btn-group">
                         <button type="submit" class="btn" id="btn_submit_forgot_password">Enviar</button>
-                        <button type="button" class="btn back-btn-forgot">Voltar</button>
+                        <button type="button" class="btn back-btn-forgot" aria-label="Voltar">Voltar</button>
                     </div>
                 </form>
             </div>
-            <img class="back-image" src="../static/Midia/PROFESSOR_GARGAMEL_3.jpg" alt="Gargamel_3">
+            <img class="back-image" src="{{ url_for('static', filename='Midia/PROFESSOR_GARGAMEL_3.jpg') }}" alt="Gargamel_3">
         </article>
 
     </main>

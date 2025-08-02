@@ -10,15 +10,21 @@ from .auth_logic import (
     process_cadastro_logic,
     process_recuperacao_senha
 )
-from .forms import CadastroForm
+from .forms import CadastroForm, ForgotPasswordForm, GuestLoginForm, LoginForm
 
 @app.route('/')
 def home_login():
-    # A rota para minha pagina index irá apenas puxar os forms de (cadastro e recuperação de senha)
-    # Em seguida irá renderizar o index.html passando o form como parametro.
+    
+    form_login = LoginForm()
     form_cadastro = CadastroForm()
-    #Adicionar recuperação de relefone (terá que ser configurado no html)
-    return render_template('index.html', form=form_cadastro)
+    form_forgot_password = ForgotPasswordForm()
+    form_guest_login = GuestLoginForm()
+
+    return render_template('index.html', 
+                           form_l=form_login,
+                           form_c=form_cadastro, 
+                           form_p=form_forgot_password,
+                           form_g=form_guest_login) # Passe o formulário para o template
 
 @app.route('/home')
 def home_page():
@@ -108,3 +114,19 @@ def logout():
     session.pop('guest_data', None)
     print("Usuário deslogado.")
     return redirect(url_for('home_login'))
+
+@app.route('/processar_login_convidado', methods=['POST'])
+def handle_login_convidado():
+    form = GuestLoginForm() 
+    if form.validate_on_submit():
+        return process_login_convidado(
+            name=form.guest_name.data,
+            academy=form.guest_academy.data,
+            belt=form.guest_belt.data,
+            master=form.master.data
+        )
+    else:
+        # Se a validação do WTForms falhou, retorne os erros em JSON.
+        # Isso ainda será capturado pelo JavaScript.
+        print("Erros de validação do formulário de convidado:", form.errors)
+        return jsonify({'status': 'error', 'message': 'Erro de validação no formulário de convidado.', 'errors': form.errors}), 400

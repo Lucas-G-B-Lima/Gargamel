@@ -4,6 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const backFaces = document.querySelectorAll('.back-face');
     let botaoEnviado = null;
 
+    // --- Pressionar ESC ativa botão voltar (back-btn)
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const visibleBackFace = Array.from(document.querySelectorAll('.back-face'))
+                .find(face => face.inert === false);
+
+            const backButton = visibleBackFace?.querySelector('.back-btn, .back-btn-register, .back-btn-forgot');
+            backButton?.click();
+        }
+    });
+
     const cards = {
         login: document.getElementById('login-back'),
         social: document.getElementById('social-back'),
@@ -89,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isSelected) {
                 button.classList.add('selected');
                 btnLoginSocial.value = button.value; 
-                socialLabel.textContent = `Você está prestes a fazer login com o: ${button.textContent.trim()}`;
+                socialLabel.textContent = `Você será redirecionado para a pagina do ${button.textContent.trim()} para efetuar o login.`;
                 socialLabel.classList.add('visible');
             } else {
                 btnLoginSocial.value = '';
@@ -167,28 +178,54 @@ document.addEventListener('DOMContentLoaded', () => {
         btnSubmitForgot.addEventListener('click', function(e) {
             const userInput = document.getElementById('forgot_password_user');
             const metodoSelect = document.getElementById('forgot_metodo');
-            let isValid = true;
 
-            // Validação 1: Campo de usuário/e-mail preenchido
-            if (!userInput.value.trim()) {
-                showMessage("Usuário ou e-mail é obrigatório", "warning");
-                userInput.style.border = '1px solid #963232';
-                setTimeout(() => userInput.style.border = '', 1500);
-                isValid = false;
-            }
-
-            // Validação 2: Método selecionado
-            if (metodoSelect.value === '-' || !['email', 'telefone'].includes(metodoSelect.value)) {
-                showMessage("Selecione um método de recuperação válido", "warning");
-                metodoSelect.style.border = '1px solid #963232';
-                setTimeout(() => metodoSelect.style.border = '', 1500);
-                isValid = false;
-            }
-
-            if (!isValid) {
+            // Validação de campos preenchidos
+            if (!userInput.value.trim() || metodoSelect.value === '-' || !['email', 'telefone'].includes(metodoSelect.value)) {
+                if (!userInput.value.trim()) {
+                    showMessage("Usuário ou e-mail é obrigatório", "warning");
+                    userInput.style.border = '1px solid #963232';
+                    setTimeout(() => userInput.style.border = '', 1500);
+                } else {
+                    showMessage("Selecione um método de recuperação", "warning");
+                    metodoSelect.style.border = '1px solid #963232';
+                    setTimeout(() => metodoSelect.style.border = '', 1500);
+                }
                 e.preventDefault();
             }
         });
+    }
+
+    // --- Validação do Formulário de Convidado ---
+    const formGuest = document.getElementById('form_guest');
+    if (formGuest) {
+        const btnSubmitGuest = formGuest.querySelector('button[type="submit"]');
+
+        btnSubmitGuest.addEventListener('click', function(e) {
+            const guestName = formGuest.querySelector('[name="guest_name"]');
+            const guestAcademy = formGuest.querySelector('[name="guest_academy"]');
+
+            const nome = guestName?.value.trim();
+            const academia = guestAcademy?.value.trim();
+
+            if (!nome || nome.length < 4 || !academia) {
+                e.preventDefault();
+
+                if (!nome) {
+                    showMessage("Insira um nome para entrar como convidado.", "warning");
+                    guestName.style.border = '1px solid #963232';
+                    setTimeout(() => guestName.style.border = '', 1500);
+                } else if (nome.length < 4) {
+                    showMessage("O nome precisa ter pelo menos 4 caracteres.", "warning");
+                    guestName.style.border = '1px solid #963232';
+                    setTimeout(() => guestName.style.border = '', 1500);
+                } else {
+                    showMessage("Por favor, informe sua academia.", "warning");
+                    guestAcademy.style.border = '1px solid #963232';
+                    setTimeout(() => guestAcademy.style.border = '', 1500);
+                }
+            }
+        });
+    
     }
 
     document.querySelectorAll('form button[type="submit"]').forEach(botao => {
@@ -263,6 +300,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // Botão de contato (usando showMessage existente)
     document.getElementById('btn_contato')?.addEventListener('click', () => {
-        showMessage("Caso precise de ajuda, envie um e-mail para gargabjj@contato.com.br", "info");
+        showMessage("Caso precise de ajuda, envie um e-mail para gargabjj@contato.com.br", "warning");
     });
 });
+
+// Função para filtrar as opções de grau
+function filterGrauOptions() {
+    const belt = document.getElementById("register_belt").value;
+    const grauField = document.getElementById("register_grau");
+    const options = Array.from(grauField.options);
+
+    // Mostrar todas as opções inicialmente
+    options.forEach(opt => opt.style.display = "block");
+
+    if (belt === 'Faixa Branca Grau V') {
+        options.forEach(opt => {
+            opt.style.display = opt.value === 'Grau 5' ? "block" : "none";
+        });
+    } else if (!['Faixa Preta', 'Faixa Coral', 'Faixa Vermelha'].includes(belt)) {
+        options.forEach((opt, index) => {
+            if (index >= 5) opt.style.display = "none";
+        });
+    }
+
+    // Se a opção selecionada está oculta, resetar seleção
+    const selectedOption = grauField.options[grauField.selectedIndex];
+    if (selectedOption.style.display === "none") {
+        // Seleciona a primeira opção visível
+        const firstVisible = options.find(opt => opt.style.display !== "none");
+        if (firstVisible) grauField.value = firstVisible.value;
+    }
+}
+
+document.getElementById("register_belt").addEventListener("change", filterGrauOptions);
+window.addEventListener("load", filterGrauOptions);
+
+

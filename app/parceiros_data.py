@@ -11,22 +11,22 @@ def get_todos_os_parceiros():
     parceiros = [
         {
             'nome': "Lima",
-            'logo': '../static/Midia/Noticias_img/Img_teste_parceiro.jpg',
+            'logo': 'Midia/Noticias_img/Img_teste_parceiro.jpg',
             'link': 'https://pt.wikipedia.org/wiki/Jiu-j%C3%ADtsu'
         },
         {
             'nome': "VS BJJ",
-            'logo': '../static/Midia/Noticias_img/Img_teste_parceiro.jpg',
+            'logo': 'Midia/Noticias_img/Img_teste_parceiro.jpg',
             'link': 'https://pt.wikipedia.org/wiki/Jiu-j%C3%ADtsu'
         },
         {
             'nome': "Gladson",
-            'logo': '../static/Midia/Noticias_img/Img_teste_parceiro.jpg',
+            'logo': 'Midia/Noticias_img/Img_teste_parceiro.jpg',
             'link': 'https://pt.wikipedia.org/wiki/Jiu-j%C3%ADtsu'
         },
         {
             'nome': "Academia Top Jitsu",
-            'logo': '../static/Midia/Noticias_img/Img_teste_parceiro.jpg',
+            'logo': 'Midia/Noticias_img/Img_teste_parceiro.jpg',
             'link': 'https://pt.wikipedia.org/wiki/Jiu-j%C3%ADtsu'
         }
     ]

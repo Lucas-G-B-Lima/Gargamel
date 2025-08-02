@@ -13,6 +13,7 @@
     --color-youtube: #FF0000;
     --color-pinterest: #E60023;
     --color-whatsapp: #25D366;
+    --color-blogger: #ffa500;
     --instagram-gradient: radial-gradient(circle at 30% 107%,#fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
 }
 
@@ -271,6 +272,7 @@ h2{
 .icones .icon-x-twitter:hover {background-color: var(--color-x-twitter);border-color: var(--color-x-twitter);}
 .icones .icon-facebook:hover {background-color: var(--color-facebook);border-color: var(--color-facebook);}
 .icones .icon-whatsapp:hover {background-color: var(--color-whatsapp);border-color: var(--color-whatsapp);}
+.icones .icon-blogger:hover {background-color: var(--color-blogger);border-color: var(--color-blogger);}
 .icones .icon-instagram:hover {background: var(--color-instagram);background: var(--instagram-gradient);border-color: var(--color-instagram);}
 
 /* Animação extra em redes sociais */
@@ -307,6 +309,7 @@ h2{
 .icones .icon-x-twitter:hover::after {background-color: var(--color-x-twitter);border-color: var(--color-x-twitter);}
 .icones .icon-facebook:hover::after {background-color: var(--color-facebook);border-color: var(--color-facebook);}
 .icones .icon-whatsapp:hover::after {background-color: var(--color-whatsapp);border-color: var(--color-whatsapp);}
+.icones .icon-blogger:hover::after {background-color: var(--color-blogger);border-color: var(--color-blogger);}
 
 /* Botoes logar rede social */
 .social-list {

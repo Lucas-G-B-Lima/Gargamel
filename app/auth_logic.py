@@ -65,35 +65,31 @@ def process_login_social(request):
 
 
 # Login via usuario convidado =========================================================
-def process_login_convidado(request):
-    
-    # 1. Obtém dados do formulário
-    guest_name = request.form.get('guest_name').strip()
-    guest_academy = request.form.get('guest_academy', 'Não informada').strip()
-    guest_belt = request.form.get('guest_belt', 'Não informada')
-    is_master  = request.form.get('master') == 'on'
+def process_login_convidado(name, academy, belt, master):
+    # A validação de nome agora é feita pelo WTForms, antes desta função ser chamada.
 
-    # 2. Validação do nome (mínimo 4 caracteres)
-    if len(guest_name) < 4:
-        return jsonify({
-            'status': 'error',
-            'message': 'Nome deve ter pelo menos 4 caracteres'
-        }), 400
+    try:
+        # 3. Configura sessão
+        session.update({
+            'logged_in': True,
+            'user_type': 'guest',
+            'username': f"{name} (Convidado)", # Usando o nome recebido
+            'guest_data': {
+                'name': name,
+                'academy': academy,
+                'belt': belt,
+                'is_master': master, # Usando 'master' diretamente do form (True/False)
+                'login_time': datetime.now().strftime('%d/%m/%Y %H:%M')
+            }
+        })
+        return redirect(url_for('home_page')) # Redireciona para a homepage <-- Restaurado!
 
-    # 3. Configura sessão
-    session.update({
-        'logged_in': True,
-        'user_type': 'guest',
-        'username': f"{guest_name} (Convidado)",
-        'guest_data': {
-            'name': guest_name,
-            'academy': guest_academy,
-            'belt': guest_belt,
-            'is_master': is_master,
-            'login_time': datetime.now().strftime('%d/%m/%Y %H:%M')
-        }
-    })
-    return redirect(url_for('home_page')) # Redireciona para a homepage
+    except Exception as e:
+        # Se ocorrer um erro interno (ex: DB), ainda podemos retornar um JSON de erro
+        # No entanto, se o fluxo do seu app espera um redirect, você pode precisar de um tratamento diferente aqui
+        # Para este caso, vamos manter o retorno de JSON para erros inesperados
+        print(f"Erro ao processar login de convidado: {e}")
+        return jsonify({'status': 'error', 'message': 'Ocorreu um erro inesperado ao tentar entrar como convidado.'}), 500
 
 
 # Cadastro de usuario =========================================================
@@ -194,11 +190,9 @@ def process_recuperacao_senha(request):
             user = UserLogin.query.filter_by(login=identificador).first()
 
         if not user:
-            # Não revela que o usuário não existe (por segurança)
-            print(f"Tentativa de recuperação para {identificador} (não encontrado)")
             return jsonify({
                 'status': 'success',  # Mesmo status para não vazar informações
-                'message': 'Se existir, um código foi enviado para seu e-mail/telefone'
+                'message': f'Se existir, um código foi enviado para seu {metodo}'
             }), 200
 
         # 3. Gera token seguro e data de expiração

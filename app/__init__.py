@@ -6,13 +6,14 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv('.env')
+print(f"Valor de DATABASE_URL lido do .env: {os.getenv('DATABASE_URL')}")
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_folder='static') # Adicione instance_relative_config=True
+
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '').replace(
-    'postgres://', 'postgresql://') or \
-    'sqlite:///' + os.path.join(app.instance_path, 'database.db') # ESSA É A LINHA QUE MUDA!
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 #app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)

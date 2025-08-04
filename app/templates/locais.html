@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block css_especifico %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/locais.css') }}">
+{% endblock %}
+
+{% block body_class %}class="pagina-locais"{% endblock %} <!-- Class do body -->
+
+{% block content %} 
+
+    <div class="conteudo_center">
+        <div class="titulo">
+            <h1>NOSSAS ACADEMIAS</h1>
+        </div>
+        
+        <div class="conteudo_item_local">
+            <div class="div_img_frame">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.9597164857937!2d-43.87039082592044!3d-16.728861684050322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xab530068f47827%3A0xf99e8b9fa953dd7e!2sGarga%20bjj%20defesa%20pessoal!5e0!3m2!1spt-BR!2sbr!4v1754248056707!5m2!1spt-BR!2sbr"
+                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <img src="{{ url_for('static', filename='Midia/Locais/casa_do_mestre.png') }}" alt="Fachada da Casa do Mestre">
+            </div>
+            <div class="texto">
+                <h2>MATRIZ</h2>
+                <p>Nossa primeira casa, construida acima da residencia do nosso proprio mestre criou o time original que hoje está sendo destaque nos campeonatos locais</p>
+                <ul>
+                    <li><p>Unidade: Matriz</p></li>
+                    <li><p>Localização: Montes Claros - MG</p></li>
+                    <li><p>Endereço: Rua Dr.Veloso 1038 centro</p></li>
+                    <li><p>Nome: Academia GARGA-BJJ</p></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="conteudo_item_local">
+            <div class="div_img_frame">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13149.35201994891!2d113.004052!3d34.5196635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35d7b7e24b1c51b5%3A0xe4050c3991a842cb!2sSongshan%20Mountain!5e0!3m2!1spt-BR!2sbr!4v1754248292070!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <img src="{{ url_for('static', filename='Midia/Locais/Montanha.jpg') }}" alt="Montanha Songshan">
+            </div>
+            <div class="texto">
+                <h2>Songshan Mountain</h2>
+                <p>A cadeia montanhosa de Songshan é composta por várias montanhas que podem chegar a 1 500 metros na cidade-condado de Dengfeng, na província de Honã.  Com 36 cumes e uma extensão de 60 quilômetro</p>
+                <ul>
+                    <li><p>Unidade: 02</p></li>
+                    <li><p>Localização: Songshan</p></li>
+                    <li><p>Endereço: Coordenadas: 34° 29′ 5″ N, 112° 57′ 37″ E</p></li>
+                    <li><p>Nome: Montanha GARGA-BJJ</p></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <aside class="lateral" id="conteudo_rigth">
+        <h2>Academias Parceiras</h2>
+        {% for parceiro in parceiros %}
+        <div class="parceiro">
+            <a href="{{ parceiro.link }}" target="_blank" rel="noopener noreferrer"> {% if parceiro.logo %}
+                    <img src="{{ url_for('static', filename='Midia/Locais/templo_shaolin.jpg') }}" alt="Logo {{ parceiro.nome }}">
+                {% endif %}
+                <p>{{ parceiro.nome }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </aside>
+
+{% endblock %}

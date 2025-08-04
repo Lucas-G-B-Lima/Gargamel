@@ -1,0 +1,116 @@
+.pagina-home main {
+    display: flex;
+    justify-content: center; /* Centraliza as colunas (conteudo_left, conteudo_center, conteudo_right) */
+    align-items: flex-start; /* Alinha os itens no topo */
+    gap: 10px; /* Adicione um espaçamento entre as colunas, se desejar */
+}
+
+/* ====== CENTRO ======  */
+.conteudo_center {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    width: 50%;
+    background-color: white;
+}
+.titulo {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+.conteudo_item{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 300px;
+}
+
+/* ====== LATERAL ======  */
+.lateral {
+    width: 20%;
+    text-align: center;
+    margin: 0 auto;
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.lateral p{
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-size: 0.9em;
+    background-color: white;
+    border-radius: 5px;
+    padding: 2px;
+}
+.lateral h2{
+    width: 90%;
+    font-size: 0.9em;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-weight: normal;
+    border: 1px solid var(--color-terceary);
+}
+.noticia, .parceiro {
+    border: 1px solid var(--color-terceary);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px;
+    margin: 0 auto 0 auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 5px;
+    box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    /**/
+
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: all 0.3s ease-out;
+}
+
+.noticia img, .parceiro img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
+    border: 1px solid var(--color-primary);
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+}
+
+.noticia img{
+    filter: blur(2px) brightness(0.6);
+}
+
+.noticia p, .parceiro p {
+    height: 18%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 0.7em;
+    color: var(--color-primary);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000044;
+    transition: all 0.3s ease-out;
+}
+.noticia a, .parceiro a{ text-decoration: none; }
+
+.noticia:hover, .parceiro:hover {
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+    padding: 0px;
+    border: 2px solid var(--color-terceary);
+}
+.noticia:hover img, .parceiro:hover img{
+    border: none;
+    border-radius: 0px;
+    filter: blur(0) brightness(1);
+}
+.noticia:hover p, .parceiro:hover p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+}

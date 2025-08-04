@@ -41,6 +41,7 @@ def process_login_senha(request):
     return redirect(url_for('home_page'))
 
 
+
 # Login via rede social =========================================================
 def process_login_social(request):
 

@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block css_especifico %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/not_found.css') }}">
+{% endblock %}
+
+{% block body_class %}class="pagina-not_found"{% endblock %} <!-- Class do body -->
+
+{% block content %} 
+
+    <div class="conteudo_center">
+
+        <div class="titulo">
+            <h1>VOCE NÃO DEVERIA ESTAR AQUI</h1>
+            <h2>Realize a punição de acordo com sua faixa</h2>
+        </div>
+        
+        <div class="conteudo_item_sobre">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Not_Found/faixa_branca.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>FAIXA BRANCA</h2>
+                <p>Pode ir pagando 10 padre marcelos!</p>
+            </div>
+        </div>
+
+        <div class="conteudo_item_sobre">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Not_Found/faixa_azul.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>FAIXA AZUL</h2>
+                <p>Pode ir pagando 10 flexões!</p>
+            </div>
+        </div>
+        
+        <div class="conteudo_item_sobre">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Not_Found/faixa_roxa.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>FAIXA ROXA</h2>
+                <p>Pode fazer 10 raspagens!</p>
+            </div>
+        </div>
+        
+        <div class="conteudo_item_sobre">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Not_Found/faixa_marrom.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>FAIXA MARROM</h2>
+                <p>Vc tá perdoado, mas só dessa vez...</p>
+            </div>
+        </div>
+        
+        <div class="conteudo_item_sobre">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Not_Found/faixa_preta.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>FAIXA PRETA</h2>
+                <p>Bom dia professor, vc parece ter errado o Link, mas tá tranquilo, pode clickar <a href="/home">aqui</a> pra voltar para sua navegaçãconteudo_item_sobreo. OSS!</p>
+            </div>
+        </div>
+        
+    </div>
+
+{% endblock %}
+
+{% block js_especifico %}
+<script src="#"></script>
+{% endblock %}

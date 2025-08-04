@@ -1,0 +1,95 @@
+/* evento.css */
+
+body {
+    background-color: #aaa;
+}
+
+/* ====== MAIN ======  */
+.pagina-evento main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+}
+
+
+/* ====== CENTRO ======  */
+.conteudo_center {
+    width: 60%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.titulo {
+    width: 80%;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.titulo h1{
+    font-size: 1.1em;
+    line-height: 0.7;
+}
+
+/* ====== CONTEUDO ======  */
+.conteudo_item_evento {
+    display: flex;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+    background-color: white;
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    font-size: 1em;
+    text-align: justify;
+    color: var(--color-primary);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+    gap: 5px;
+    transition: all 0.4s ease; /* Transição suave para hover */
+}
+
+.conteudo_item_evento img{
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.4);   
+    box-sizing: border-box;
+    transition: transform 0.4s ease; /* Transição suave para hover */
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+}
+
+.conteudo_item_evento .texto {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    background-color: white;
+    transition: all 0.4s ease; /* Transição suave para hover */
+}
+
+.conteudo_item_evento h2{
+    font-size: 1.2em;
+    text-align: center;
+}
+.conteudo_item_evento p{
+    font-size: 0.8em;
+    text-align: justify;
+}
+
+
+/* Efeito de hover na imagem */
+.conteudo_item_evento:hover img {
+    transform: scale(1.01); /* Zoom na imagem */
+}
+
+.conteudo_item_evento:hover {
+    background-color: #888888;
+}
+
+.conteudo_item_evento:hover .texto{
+    transform: scale(1.01); /* Zoom na imagem */
+}
+

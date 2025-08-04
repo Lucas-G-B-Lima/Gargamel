@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block css_especifico %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/eventos.css') }}">
+{% endblock %}
+
+{% block body_class %}class="pagina-evento"{% endblock %} <!-- Class do body -->
+
+{% block content %} 
+
+    <div class="conteudo_center">
+
+        <div class="titulo"><h1>PROXIMOS EVENTOS</h1></div>
+        
+        <div class="conteudo_item_evento">
+            <div class="texto">
+                <h2>Aluno Garga-BJJ vence campeonato no Katar</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quasi ab, eius officia cupiditate delectus neque temporibus, facere voluptates sequi amet tenetur maiores, illo asperiores labore. Sunt hic laboriosam eum!</p>
+            </div>
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Eventos/Yin_Yang.jpg') }}" alt="professor Gargamel">
+            </div>
+        </div>
+
+        <div class="conteudo_item_evento">
+            <div class="texto">
+                <h2>Graduação 2025</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quasi ab, eius officia cupiditate delectus neque temporibus, facere voluptates sequi amet tenetur maiores, illo asperiores labore. Sunt hic laboriosam eum!</p>
+            </div>
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Eventos/Yin_Yang.jpg') }}" alt="professor Gargamel">
+            </div>
+        </div>
+        
+        <div class="conteudo_item_evento">
+            <div class="texto">
+                <h2>Inauguração da nova academia/h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quasi ab, eius officia cupiditate delectus neque temporibus, facere voluptates sequi amet tenetur maiores, illo asperiores labore. Sunt hic laboriosam eum!</p>
+            </div>
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Eventos/Yin_Yang.jpg') }}" alt="professor Gargamel">
+            </div>
+        </div>
+        
+        <div class="conteudo_item_evento">
+            <div class="texto">
+                <h2>Time garga-bjj no bocaiuva open</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quasi ab, eius officia cupiditate delectus neque temporibus, facere voluptates sequi amet tenetur maiores, illo asperiores labore. Sunt hic laboriosam eum!</p>
+            </div>
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Eventos/Yin_Yang.jpg') }}" alt="professor Gargamel">
+            </div>
+        </div>
+        
+    </div>
+
+{% endblock %}
+
+{% block js_especifico %}
+<script src="#"></script>
+{% endblock %}

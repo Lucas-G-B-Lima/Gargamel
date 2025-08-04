@@ -2,18 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const welcomeFace = document.querySelector('.welcome-face');
     const backFaces = document.querySelectorAll('.back-face');
-    let botaoEnviado = null;
-
-    // --- Pressionar ESC ativa botão voltar (back-btn)
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const visibleBackFace = Array.from(document.querySelectorAll('.back-face'))
-                .find(face => face.inert === false);
-
-            const backButton = visibleBackFace?.querySelector('.back-btn, .back-btn-register, .back-btn-forgot');
-            backButton?.click();
-        }
-    });
+    let botaoEnviado = null; //Controle de botão oss pressionado
 
     const cards = {
         login: document.getElementById('login-back'),
@@ -26,20 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Mostra card específico ---
     function rotateTo(card) {
         welcomeFace.style.transform = 'rotateY(180deg)';
-        welcomeFace.inert = true; // Adicionei esta linha
+        welcomeFace.inert = true;
 
         backFaces.forEach(face => {
             face.style.transform = 'rotateY(180deg)';
-            face.inert = true; // Substitui aria-hidden
+            face.inert = true;
         });
         card.style.transform = 'rotateY(360deg)';
-        card.inert = false; // Substitui aria-hidden
+        card.inert = false;
     }
 
     // --- Voltar para tela inicial ---
     function backToWelcome() {
         welcomeFace.style.transform = 'rotateY(0deg)';
-        welcomeFace.inert = false; // Corrigi esta linha (estava dentro do loop)
+        welcomeFace.inert = false;
         backFaces.forEach(face => {
             face.style.transform = 'rotateY(180deg)';
         });
@@ -86,11 +75,22 @@ document.addEventListener('DOMContentLoaded', () => {
             backToWelcome();
         });
     });
+    
+    // --- Pressionar ESC ativa botão voltar (back-btn)
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const visibleBackFace = Array.from(document.querySelectorAll('.back-face'))
+                .find(face => face.inert === false);
+
+            const backButton = visibleBackFace?.querySelector('.back-btn, .back-btn-register, .back-btn-forgot');
+            backButton?.click();
+        }
+    });
 
     // --- Rede Social ---
     const socialButtons = document.querySelectorAll('.social_btn');
-    const socialLabel = document.getElementById('rede_social_selecionada');
     const btnLoginSocial = document.getElementById('btn_login_social');
+    const socialLabel = document.getElementById('rede_social_selecionada');
 
     socialButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -228,12 +228,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     }
 
+    //Quando vc pressiona OSS! o javascript identifica qual deles vc apertou
     document.querySelectorAll('form button[type="submit"]').forEach(botao => {
         botao.addEventListener('click', e => {
             botaoEnviado = e.target;
         });
     });
 
+    //Aqui o login é chamado com base no botão OSS! pressionado,  Assim, você sabe qual botão disparou o envio do formulário
     forms.forEach(form => {
         form.addEventListener('submit', async e => {
             e.preventDefault();
@@ -252,9 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const formData = new FormData(form);
-            for (let [key, value] of formData.entries()) {
-                console.log(`${key}: ${value}`);
-            }
+            //verificar dados entrantes do botão oss!
+            for (let [key, value] of formData.entries()) {console.log(`${key}: ${value}`);}
             const action = form.getAttribute('action') || '#';
 
             try {

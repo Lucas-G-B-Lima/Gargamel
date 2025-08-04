@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% block css_especifico %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sobre.css') }}">
+{% endblock %}
+
+{% block body_class %}class="pagina-sobre"{% endblock %} <!-- Class do body -->
+
+{% block content %} 
+
+    <div class="conteudo_center">
+
+        <div class="titulo"><h1>FRANQUIA GARGA BJJ</h1></div>
+        
+        <div class="conteudo_item_sobre">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Gargamel.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>O mestre</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quasi ab, eius officia cupiditate delectus neque temporibus, facere voluptates sequi amet tenetur maiores, illo asperiores labore. Sunt hic laboriosam eum!</p>
+            </div>
+        </div>
+
+        <div class="conteudo_item_sobre">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Perfil.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>A academia</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quasi ab, eius officia cupiditate delectus neque temporibus, facere voluptates sequi amet tenetur maiores, illo asperiores labore. Sunt hic laboriosam eum!</p>
+            </div>
+        </div>
+        
+        <div class="conteudo_item_sobre">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Gargamel.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>Projetos sociais</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quasi ab, eius officia cupiditate delectus neque temporibus, facere voluptates sequi amet tenetur maiores, illo asperiores labore. Sunt hic laboriosam eum!</p>
+            </div>
+        </div>
+        
+        <div class="conteudo_item_sobre">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Perfil.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>Ideais e comprometimento</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quasi ab, eius officia cupiditate delectus neque temporibus, facere voluptates sequi amet tenetur maiores, illo asperiores labore. Sunt hic laboriosam eum!</p>
+            </div>
+        </div>
+        
+        <div class="conteudo_item_sobre">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Gargamel.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>Referencias</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quasi ab, eius officia cupiditate delectus neque temporibus, facere voluptates sequi amet tenetur maiores, illo asperiores labore. Sunt hic laboriosam eum!</p>
+            </div>
+        </div>
+        
+        <div class="conteudo_item_sobre">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Perfil.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>O site</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quasi ab, eius officia cupiditate delectus neque temporibus, facere voluptates sequi amet tenetur maiores, illo asperiores labore. Sunt hic laboriosam eum!</p>
+            </div>
+        </div>
+        
+    </div>
+
+{% endblock %}
+
+{% block js_especifico %}
+<script src="#"></script>
+{% endblock %}

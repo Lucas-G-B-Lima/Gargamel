@@ -1,0 +1,176 @@
+/* local.css */
+
+body {
+    background-color: #aaa;
+}
+
+/* ====== MAIN ======  */
+main {
+    display: flex;
+    justify-content: space-around; /* O espaço aqui está apenas emntre, e não em volta */
+    align-items: flex-start; 
+    gap: 10px;
+}
+
+/* ====== CENTRO ======  */
+.conteudo_center {
+    width: 70%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.titulo {
+    width: 80%;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.titulo h1{
+    font-size: 1.1em;
+    line-height: 0.7;
+}
+
+/* ====== LATERAL ======  */
+.lateral {
+    width: 23%;
+    text-align: center;
+    margin: 0;
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.lateral p{
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-size: 0.9em;
+    background-color: white;
+    border-radius: 5px;
+    padding: 2px;
+}
+.lateral h2{
+    width: 90%;
+    font-size: 0.9em;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    font-weight: normal;
+    border: 1px solid var(--color-terceary);
+}
+.parceiro {
+    border: 1px solid var(--color-terceary);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px;
+    margin: 0 auto 0 auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 5px;
+    box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    /**/
+
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: all 0.3s ease-out;
+}
+
+.parceiro img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
+    border: 1px solid var(--color-primary);
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+}
+
+/* ====== CONTEUDO ======  */
+.conteudo_item_local {
+    display: flex;
+    box-sizing: border-box;
+    background-color: white;
+    width: 100%;
+    height: 350px;
+    padding: 10px;
+    font-size: 1em;
+    text-align: justify;
+    color: var(--color-primary);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+    gap: 5px;
+    transition: all 0.4s ease;
+}
+
+.conteudo_item_local .div_img_frame {
+    flex: 1;
+    height: 100%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Essencial para posicionar img e iframe sobrepostos */
+    aspect-ratio: 1 / 1;
+}
+
+.conteudo_item_local img {
+    position: absolute; /* Posiciona a imagem sobre o iframe */
+    height: 100%;
+    width: 100%; /* Garante que a imagem preencha o container quadrado */
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    object-fit: cover;
+    transition: opacity 0.4s ease; /* Transição suave para a opacidade */
+    opacity: 1; /* Imagem visível por padrão */
+}
+
+.conteudo_item_local iframe {
+    position: absolute; /* Posiciona o iframe sobre a imagem (inicialmente invisível) */
+    height: 100%;
+    width: 100%; /* Garante que o iframe preencha o container quadrado */
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    opacity: 0; /* Iframe invisível por padrão */
+    transition: opacity 0.4s ease; /* Transição suave para a opacidade */
+}
+
+.conteudo_item_local .texto {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+}
+
+.conteudo_item_local h2{
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.conteudo_item_local p{
+    font-size: 0.8em;
+    text-align: justify;
+}
+.conteudo_item_local ul{
+    list-style: none;
+}
+.conteudo_item_local li{
+    line-height: 0.8;
+}
+
+.conteudo_item_local:hover img{ 
+    opacity: 0; /* Esconde a imagem no hover */
+}
+.conteudo_item_local:hover iframe{
+    opacity: 1; /* Mostra o iframe no hover */
+}

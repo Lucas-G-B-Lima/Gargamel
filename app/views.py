@@ -12,6 +12,14 @@ from .auth_logic import (
 )
 from .forms import CadastroForm, ForgotPasswordForm, GuestLoginForm, LoginForm
 
+
+@app.errorhandler(404)
+def page_not_found(e):
+    context = {
+        'logged_in': 'user_logged_in'
+    }
+    return render_template('not_found.html',context=context), 404
+
 @app.route('/')
 def home_login():
     
@@ -27,10 +35,12 @@ def home_login():
                            form_g=form_guest_login) # Passe o formulário para o template
 
 @app.route('/home')
-def home_page():
+def page_home():
 
     todas_as_noticias = get_todas_as_noticias()
     todos_os_parceiros = get_todos_os_parceiros()
+    ultimas_4_noticias = todas_as_noticias[-4:]
+    ultimos_4_parceiros = todos_os_parceiros[-4:]
     
     user_logged_in = session.get('logged_in', False)
     username = session.get('username', 'Convidado')
@@ -49,10 +59,74 @@ def home_page():
         'faixa': faixa,
         'academia': academia
     }
-    return render_template('Home.html',
+    return render_template('home.html',
                            noticias=todas_as_noticias,
                            parceiros=todos_os_parceiros,
                            context=context)
+
+@app.route('/locais')
+def page_locais():
+
+    todos_os_parceiros = get_todos_os_parceiros()
+    #    tive que adicionar context pois esta dando erro por eu ter um "arquivo base"
+    context = {
+        'logged_in': 'user_logged_in'
+    }
+    #
+    return render_template('locais.html',
+                           parceiros=todos_os_parceiros,
+                           context=context)
+
+@app.route('/eventos')
+def page_eventos():
+    #    tive que adicionar context pois esta dando erro por eu ter um "arquivo base"
+    context = {
+        'logged_in': 'user_logged_in'
+    }
+    #
+    return render_template('eventos.html',context=context)
+
+@app.route('/sobre')
+def page_sobre():
+    #    tive que adicionar context pois esta dando erro por eu ter um "arquivo base"
+    context = {
+        'logged_in': 'user_logged_in'
+    }
+    #
+    return render_template('sobre.html',context=context)
+
+@app.route('/parceiros')
+def page_parceiros():
+    #    tive que adicionar context pois esta dando erro por eu ter um "arquivo base"
+    context = {
+        'logged_in': 'user_logged_in'
+    }
+    todos_os_parceiros = get_todos_os_parceiros()
+    #
+    return render_template('parceiros.html',
+                           parceiros=todos_os_parceiros,
+                           context=context)
+
+@app.route('/layout')
+def page_layout():
+    context = {
+        'logged_in': 'user_logged_in'
+    }
+    #
+    return render_template('layout.html',context=context)
+
+
+
+@app.route('/noticias')
+def page_noticias():
+    #
+    #
+    #
+    return render_template('noticias.html')
+
+
+
+############## =========== PROCESSOS =========== ##############
 
 @app.route('/processar_login', methods=['POST']) #OK
 def processar_login_unificado():

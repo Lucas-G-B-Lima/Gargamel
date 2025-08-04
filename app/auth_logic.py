@@ -38,7 +38,7 @@ def process_login_senha(request):
     })
 
     # 5. Resposta de sucesso
-    return redirect(url_for('home_page'))
+    return redirect(url_for('page_home'))
 
 
 
@@ -62,7 +62,7 @@ def process_login_social(request):
     })
     
     # 3. Login
-    return redirect(url_for('home_page'))
+    return redirect(url_for('page_home'))
 
 
 # Login via usuario convidado =========================================================
@@ -83,7 +83,7 @@ def process_login_convidado(name, academy, belt, master):
                 'login_time': datetime.now().strftime('%d/%m/%Y %H:%M')
             }
         })
-        return redirect(url_for('home_page')) # Redireciona para a homepage <-- Restaurado!
+        return redirect(url_for('page_home')) # Redireciona para a homepage <-- Restaurado!
 
     except Exception as e:
         # Se ocorrer um erro interno (ex: DB), ainda podemos retornar um JSON de erro

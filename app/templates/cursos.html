@@ -1,38 +1,94 @@
-{% extends 'base.html' %}
-{% block content %} 
-<main>
+{% extends 'layout.html' %}
 
-    <aside class="lateral" id="conteudo_left">
-        <h2>NOTICIAS</h2>
-        {% for noticia in noticias %}
-        <div class="noticia">
-            <a href="{{ noticia.link }}"> <img src="{{ url_for('static', filename=noticia.imagem) }}" alt="{{ noticia.titulo }}"> <p>{{ noticia.titulo }}</p>
-            </a>
-        </div>
-        {% endfor %}
-    </aside>
+{% block css_especifico %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cursos.css') }}">
+{% endblock %}
+
+{% block body_class %}class="pagina-cursos"{% endblock %} <!-- Class do body -->
+
+{% block content %} 
 
     <div class="conteudo_center">
-        <div class="titulo">PORTAL BJJ</div>
-        <div class="conteudo_item"></div>
-        <div class="conteudo_item"></div>
-        <div class="conteudo_item"></div>
-        <div class="conteudo_item"></div>
-        <div class="conteudo_item"></div>
+
+        <div class="titulo"><h1>REFINE SEU JIU-JITSU DA MANEIRA CERTA</h1></div>
+        
+        <div class="conteudo_cursos">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Cursos/Gargamel_1.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>Brazilian Jiu-Jitsu</h2>
+                <p>
+                    Informações gratuitas e confiaveis sobre o esporte para você se informar corretamente. <br>
+                    Principais nomes e competidores do esporte, Icones nacionais, origens e o motivo da variação brasileira do esporte ser tão famosa.
+                </p>
+            </div>
+        </div>
+
+        <div class="conteudo_cursos">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Cursos/Gargamel_2.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>Introdução ao BJJ</h2>
+                <p>
+                    Informações gratuitas e confiaveis sobre o esporte para você se informar corretamente. <br>
+                    O esporte,  variações, interpretações, termos e conceitos didaticamente preparados por profissionais
+                </p>
+            </div>
+        </div>
+        
+        <div class="conteudo_cursos">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Cursos/Gargamel_3.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>Basic Belt</h2>
+                <p>
+                    Destinados aos menos graduados preparamos um conteudo inicial perfeito para você que está começando esse novo capitulo da sua vida. <br>
+                    Posições basicas que seu professor passou para refinamento. <br>
+                    Conceitos basicos para que vc entenda o que está sendo feito no tatame. <br>
+                    Regras de arbitragem e como identificar em quais campeonatos elas se aplicam.
+                </p>
+            </div>
+        </div>
+        
+        <div class="conteudo_cursos">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Cursos/temporario.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>Tatics</h2>
+                <p>
+                    O refinamento avançado que irá fazer a diferença entre oponentes que agem apenas por instinto. <br>
+                    Refinando ao maximo as posições classicas. <br>
+                    Visão e elaboração de professores diferentes valorizando a experiencia em combate. <br>
+                    Correções e observações para um jiu-jitsu mais fluido. <br>
+                    Comentarios relevantes de alunos e professor livre de ilusões da midia
+                </p>
+            </div>
+        </div>
+        
+        <div class="conteudo_cursos">
+            <div class="img">
+                <img src="{{ url_for('static', filename='Midia/Cursos/temporario.jpg') }}" alt="professor Gargamel">
+            </div>
+            <div class="texto">
+                <h2>Arte suave</h2>
+                <p>
+                    Fundamentos avançados. <br>
+                    Posições e tecnicas de alto nivel. <br>
+                    Aplicando o instinto certo para o momento certo. <br>
+                    Elaboração de tecnicas pessoais e aplicação dela contra diferentes oponentes. <br>
+                    Defesa pessoal fora do esporte para auto confiança feito por quem lecionou as Forças Terrestres dos Emirados do Catar.
+                </p>
+            </div>
+        </div>
+        
     </div>
 
-    <aside class="lateral" id="conteudo_rigth">
-        <h2>PATROCINADORES</h2>
-        {% for parceiro in parceiros %}
-        <div class="parceiro">
-            <a href="{{ parceiro.link }}" target="_blank" rel="noopener noreferrer"> {% if parceiro.logo %}
-                    <img src="{{ url_for('static', filename=parceiro.logo) }}" alt="Logo {{ parceiro.nome }}">
-                {% endif %}
-                <p>{{ parceiro.nome }}</p>
-            </a>
-        </div>
-        {% endfor %}
-    </aside>
+{% endblock %}
 
-</main>
+{% block js_especifico %}
+<script src="#"></script>
 {% endblock %}

@@ -105,6 +105,26 @@ def page_parceiros():
                            parceiros=todos_os_parceiros,
                            context=context)
 
+@app.route('/forum')
+def page_forum():
+    #    tive que adicionar context pois esta dando erro por eu ter um "arquivo base"
+    context = {
+        'logged_in': 'user_logged_in'
+    }
+    #
+    return render_template('forum.html',
+                           context=context)
+
+@app.route('/cursos')
+def page_cursos():
+    #    tive que adicionar context pois esta dando erro por eu ter um "arquivo base"
+    context = {
+        'logged_in': 'user_logged_in'
+    }
+    #
+    return render_template('cursos.html',
+                           context=context)
+
 @app.route('/layout')
 def page_layout():
     context = {
@@ -114,13 +134,21 @@ def page_layout():
     return render_template('layout.html',context=context)
 
 
-
+# Subpaginas
 @app.route('/noticias')
 def page_noticias():
     #
     #
     #
     return render_template('noticias.html')
+
+
+@app.route('/patrocinadores')
+def page_patrocinadores():
+    #
+    #
+    #
+    return render_template('patrocinadores.html')
 
 
 

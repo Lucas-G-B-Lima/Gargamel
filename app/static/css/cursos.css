@@ -1,0 +1,102 @@
+/* cursos.css */
+
+body {
+    background-color: #aaa;
+}
+
+/* ====== MAIN ======  */
+.pagina-cursos main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+}
+
+
+/* ====== CENTRO ======  */
+.conteudo_center {
+    width: 60%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.titulo {
+    width: 80%;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.titulo h1{
+    font-size: 1.1em;
+    line-height: 0.7;
+}
+
+/* ====== CONTEUDO ======  */
+.conteudo_cursos {
+    display: flex;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+    background-color: white;
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    font-size: 1em;
+    text-align: justify;
+    color: var(--color-primary);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+    gap: 5px;
+    transition: all 0.4s ease; /* Transição suave para hover */
+}
+
+.conteudo_cursos img{
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.4);   
+    box-sizing: border-box;
+    filter: brightness(0.7) blur(1px); /* Efeito inicial: escurece e borra um pouco */
+    transition: filter 0.4s ease, transform 0.4s ease; /* Transição suave para hover */
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+    aspect-ratio: 1 / 1;
+}
+
+.conteudo_cursos .texto {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    background-color: white;
+    transition: all 0.4s ease; /* Transição suave para hover */
+}
+
+.conteudo_cursos h2{
+    font-size: 1.2em;
+    text-align: center;
+}
+.conteudo_cursos p{
+    font-size: 0.8em;
+    text-align: justify;
+    filter: blur(1px);
+}
+
+
+/* Efeito de hover na imagem */
+.conteudo_cursos:hover img {
+    filter: brightness(1) blur(0); /* Remove o escurecimento e o desfoque */
+    transform: scale(1.01); /* Zoom na imagem */
+}
+
+.conteudo_cursos:hover {
+    background-color: #888888;
+}
+
+.conteudo_cursos:hover .texto{
+    transform: scale(1.01); /* Zoom na imagem */
+}
+
+.conteudo_cursos:hover p {
+    filter: blur(0);
+}

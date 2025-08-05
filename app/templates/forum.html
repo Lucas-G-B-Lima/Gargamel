@@ -1,38 +1,33 @@
-{% extends 'base.html' %}
+{% extends 'layout.html' %}
+
+{% block css_especifico %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forum.css') }}">
+{% endblock %}
+
+{% block body_class %}class="pagina-forum"{% endblock %}
+
 {% block content %} 
-<main>
 
     <aside class="lateral" id="conteudo_left">
-        <h2>NOTICIAS</h2>
-        {% for noticia in noticias %}
-        <div class="noticia">
-            <a href="{{ noticia.link }}"> <img src="{{ url_for('static', filename=noticia.imagem) }}" alt="{{ noticia.titulo }}"> <p>{{ noticia.titulo }}</p>
-            </a>
+        <h2>ASSUNTOS</h2>
+        {% for i in range(0,9) %}
+        <div class="assuntos">
+            <h2>Assunto: {{ i }}</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            <img class="img" src="{{ url_for('static', filename='Midia/Cursos/temporario.jpg') }}" alt="teste"> 
         </div>
         {% endfor %}
     </aside>
 
     <div class="conteudo_center">
-        <div class="titulo">PORTAL BJJ</div>
-        <div class="conteudo_item"></div>
-        <div class="conteudo_item"></div>
-        <div class="conteudo_item"></div>
-        <div class="conteudo_item"></div>
-        <div class="conteudo_item"></div>
-    </div>
-
-    <aside class="lateral" id="conteudo_rigth">
-        <h2>PATROCINADORES</h2>
-        {% for parceiro in parceiros %}
-        <div class="parceiro">
-            <a href="{{ parceiro.link }}" target="_blank" rel="noopener noreferrer"> {% if parceiro.logo %}
-                    <img src="{{ url_for('static', filename=parceiro.logo) }}" alt="Logo {{ parceiro.nome }}">
-                {% endif %}
-                <p>{{ parceiro.nome }}</p>
-            </a>
+        <div class="titulo">ULTIMOS DEBATES</div>
+        {% for i in range(0,5) %}
+        <div class="bloco_debate">
+            <h2>Debate sobre o numero: {{ i }}</h2>
+            <!-- <img src="{{ url_for('static', filename='#') }}" alt="teste">  -->
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
         </div>
         {% endfor %}
-    </aside>
+    </div>
 
-</main>
 {% endblock %}

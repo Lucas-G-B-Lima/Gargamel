@@ -39,8 +39,6 @@ def page_home():
 
     todas_as_noticias = get_todas_as_noticias()
     todos_os_parceiros = get_todos_os_parceiros()
-    ultimas_4_noticias = todas_as_noticias[-4:]
-    ultimos_4_parceiros = todos_os_parceiros[-4:]
     
     user_logged_in = session.get('logged_in', False)
     username = session.get('username', 'Convidado')

@@ -6,10 +6,8 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv('.env')
-print(f"Valor de DATABASE_URL lido do .env: {os.getenv('DATABASE_URL')}")
 
 app = Flask(__name__, static_folder='static') # Adicione instance_relative_config=True
-
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
